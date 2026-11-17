@@ -1,0 +1,49 @@
+[build-system]
+requires = ["hatchling>=1.27,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "rhtop"
+version = "0.1.0"
+description = "A minimal, read-only Robinhood MCP terminal dashboard"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "PolyForm-Noncommercial-1.0.0"
+license-files = ["LICENSE", "NOTICE"]
+dependencies = [
+  "textual>=6,<7",
+  "mcp>=2.3,<3",
+  "httpx2>=2.16,<3",
+  "jsonschema>=4.23,<5",
+  "cryptography>=50,<51",
+  "keyring>=25,<27",
+  "platformdirs>=4.3,<5",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.3,<10", "pytest-asyncio>=1,<2", "ruff>=0.12,<1", "build>=1.2,<2", "hatchling>=1.27,<2"]
+
+[project.scripts]
+rhtop = "rhtop.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/rhtop"]
+
+[tool.hatch.build.targets.sdist]
+include = ["/src", "/tests", "/docs", "/packaging", "/README.md", "/LICENSE", "/NOTICE", "/SECURITY.md", "/pyproject.toml", "/requirements.txt", "/run.sh", "/.gitlab-ci.yml"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "S"]
+ignore = ["E501", "S101"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S105", "S106"]
