@@ -1,6 +1,8 @@
 # rhtop
 
-A minimal, **read-only** Robinhood MCP terminal dashboard.
+A minimal, **read-only** Robinhood MCP terminal dashboard inspired by
+[btop](https://github.com/aristocratos/btop), [htop](https://htop.dev/), and
+[lazygit](https://github.com/jesseduffield/lazygit).
 Free of charge, with no paid rhtop features.
 
 ```text
